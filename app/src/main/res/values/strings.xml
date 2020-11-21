@@ -9,4 +9,6 @@
 
     <string name="note_sharing_app_text">Note Sharing App</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="zoeken">zoeken</string>
+    <string name="a_big_title">A Big Title</string>
 </resources>

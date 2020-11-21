@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/note_sharing_app_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Notitie"></activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
