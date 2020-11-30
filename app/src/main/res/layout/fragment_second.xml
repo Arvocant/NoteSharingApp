@@ -53,6 +53,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginBottom="8dp"
         android:src="@drawable/add_teammate"
+        android:onClick="addPerson"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -63,6 +64,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginBottom="8dp"
         android:src="@drawable/teammates"
+        android:onClick="contacts"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/add_teammate" />
 
