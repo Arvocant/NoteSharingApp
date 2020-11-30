@@ -37,4 +37,9 @@ public class SecondFragment extends Fragment {
 
 
     }
+
+    public void contacts(View view){
+
+
+    }
 }
