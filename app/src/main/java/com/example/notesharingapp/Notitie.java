@@ -3,12 +3,16 @@ package com.example.notesharingapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+
+import java.util.HashSet;
 
 public class Notitie extends AppCompatActivity {
 
@@ -34,6 +38,11 @@ public class Notitie extends AppCompatActivity {
             MainActivity.notes.add("");
             noteId = MainActivity.notes.size() -1;
             MainActivity.arrayAdapter.notifyDataSetChanged();
+
+            SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.notesharingapp", Context.MODE_PRIVATE);
+
+            HashSet<String> set = new HashSet<>(MainActivity.notes);
+            sharedPreferences.edit().putStringSet("notes", set).apply();
         }
 
         editText.addTextChangedListener(new TextWatcher() {
