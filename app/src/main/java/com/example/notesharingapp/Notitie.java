@@ -37,7 +37,7 @@ public class Notitie extends AppCompatActivity {
         } else {
             MainActivity.notes.add("");
             noteId = MainActivity.notes.size() -1;
-            MainActivity.arrayAdapter.notifyDataSetChanged();
+            MainActivity.mAdapter.notifyDataSetChanged();
 
             SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.notesharingapp", Context.MODE_PRIVATE);
 
@@ -54,7 +54,7 @@ public class Notitie extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 MainActivity.notes.set(noteId, String.valueOf(s));
-                MainActivity.arrayAdapter.notifyDataSetChanged();
+                MainActivity.mAdapter.notifyDataSetChanged();
 
             }
 

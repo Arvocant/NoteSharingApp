@@ -10,6 +10,8 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.View;
@@ -23,12 +25,16 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedList;
 
 public class MainActivity extends AppCompatActivity {
 
+
+    private RecyclerView mRecyclerView;
+    static NoteAdapter mAdapter;
     private EditText mSearchText;
-    static ArrayList<String> notes = new ArrayList<>();
-    static ArrayAdapter arrayAdapter;
+    static LinkedList<String> notes = new LinkedList<>();
+    //static ArrayAdapter arrayAdapter; //deleten
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,21 +44,34 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        ListView listView = (ListView) findViewById(R.id.listView);
+        //ListView listView = (ListView) findViewById(R.id.listView);
+        mRecyclerView = findViewById(R.id.recyclerview);
+
+
+
+
+
+
+
+
 
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.notesharingapp", Context.MODE_PRIVATE);
         HashSet<String> set = (HashSet<String>) sharedPreferences.getStringSet("notes", null);
         if (set == null){
             notes.add("Example note");
         } else{
-            notes = new ArrayList<>(set);
+            notes = new LinkedList<>(set);
         }
 
         notes.add("Example note");
-        arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, notes);
-        listView.setAdapter(arrayAdapter);
+        //arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, notes); deleten
+        mAdapter = new NoteAdapter(this, notes);
+        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
         //spring naar Notitie
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+        /*
+        mRecyclerView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(getApplicationContext(), Notitie.class);
@@ -61,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        mRecyclerView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int i, long l) {
 
@@ -74,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 notes.remove(itemToDelete);
-                                arrayAdapter.notifyDataSetChanged();
+                                mAdapter.notifyDataSetChanged();
 
                                 SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.notesharingapp", Context.MODE_PRIVATE);
 
@@ -85,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                         .setNegativeButton("No", null).show();
                 return true;
             }
-        });
+        });*/
     }
 
     @Override
