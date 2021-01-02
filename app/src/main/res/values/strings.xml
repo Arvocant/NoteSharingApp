@@ -18,4 +18,6 @@
     <string name="wachtwoord_vergeten">Wachtwoord vergeten?</string>
     <string name="go">GO</string>
     <string name="nieuwe_gebruiker_sign_up">Nieuwe gebruiker? SIGN UP</string>
+    <string name="noteshare">NoteShare</string>
+    <string name="slogan">Deel je notities met anderen!</string>
 </resources>
