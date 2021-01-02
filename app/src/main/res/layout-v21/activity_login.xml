@@ -20,7 +20,8 @@
         android:layout_height="wrap_content"
         android:text="@string/welkomtext"
         android:textSize="40sp"
-        android:fontFamily="@font/arvo"/>
+        android:fontFamily="@font/arvo"
+        android:textColor="#000"/>
     <TextView
         android:id="@+id/slogan_name"
         android:layout_width="wrap_content"

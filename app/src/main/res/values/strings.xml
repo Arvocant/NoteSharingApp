@@ -11,4 +11,11 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="zoeken">zoeken</string>
     <string name="a_big_title">A Big Title</string>
+    <string name="welkomtext">Welkom terug!</string>
+    <string name="log_in_om_verder_te_gaan">Log in om verder te gaan!</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="wachtwoord_vergeten">Wachtwoord vergeten?</string>
+    <string name="go">GO</string>
+    <string name="nieuwe_gebruiker_sign_up">Nieuwe gebruiker? SIGN UP</string>
 </resources>
