@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     static NoteAdapter mAdapter;
     private EditText mSearchText;
-    static LinkedList<String> notes = new LinkedList<>();
+    public static LinkedList<String> notes = new LinkedList<>();
     //static ArrayAdapter arrayAdapter; //deleten
 
     @Override
@@ -43,9 +43,8 @@ public class MainActivity extends AppCompatActivity {
         mSearchText = findViewById(R.id.zoeken);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         //ListView listView = (ListView) findViewById(R.id.listView);
-        mRecyclerView = findViewById(R.id.recyclerview);
+        mRecyclerView = (RecyclerView)findViewById(R.id.recyclerview);
 
 
 
@@ -69,17 +68,7 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        //spring naar Notitie
-        /*
-        mRecyclerView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(getApplicationContext(), Notitie.class);
-                intent.putExtra("noteId", i);
-                startActivity(intent);
-            }
-        });
-
+/*
         mRecyclerView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int i, long l) {
