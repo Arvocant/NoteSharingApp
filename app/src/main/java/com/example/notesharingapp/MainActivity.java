@@ -1,8 +1,6 @@
 package com.example.notesharingapp;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -18,12 +16,8 @@ import android.view.View;
 
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ListView;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
 
@@ -145,4 +139,11 @@ public class MainActivity extends AppCompatActivity {
             Log.d("EersteFragment", "Niet gevonden element");
         }
     }
+
+    /*new Handler().postDelayed({
+        Intent intent = new Intent(MainActivity.this, Login.class);
+        startActivity(intent);
+        finish();
+    }, SPLASH_SCREEN);*/
+
 }
