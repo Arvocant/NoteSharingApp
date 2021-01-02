@@ -16,17 +16,35 @@
 
 package com.example.notesharingapp;
 
+import android.app.AlertDialog;
 import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
+import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.notesharingapp.R;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
 
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedList;
 
 /**
@@ -37,7 +55,8 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.WordViewHolder
 
     private final LinkedList<String> mWordList;
     private LayoutInflater mInflater;
-    class WordViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    private Context _context;
+    class WordViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         public final TextView wordItemView;
         final NoteAdapter mAdapter;
         public WordViewHolder(View itemView, NoteAdapter adapter) {
@@ -49,13 +68,39 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.WordViewHolder
 
         @Override
         public void onClick(View v) {
-
+            int mPosition = getLayoutPosition();
+            String element = mWordList.get(mPosition);
+            mAdapter.notifyDataSetChanged();
+            Intent intent = new Intent(_context, Notitie.class);
+            intent.putExtra("noteId", mPosition);
+            _context.startActivity(intent);
         }
 
+        @Override
+        public boolean onLongClick(View v) {
+            final int itemToDelete = getLayoutPosition();
+            new AlertDialog.Builder(_context).setIcon(android.R.drawable.ic_dialog_alert)
+                    .setTitle("Dit item wordt verwijderd")
+                    .setMessage("Ben je zeker dat je deze notitie wilt verwijderen?")
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            MainActivity.notes.remove(itemToDelete);
+                            mAdapter.notifyDataSetChanged();
+
+                            SharedPreferences sharedPreferences = _context.getApplicationContext().getSharedPreferences("com.example.notesharingapp", Context.MODE_PRIVATE);
+
+                            HashSet<String> set = new HashSet<>(MainActivity.notes);
+                            sharedPreferences.edit().putStringSet("notes", set).apply();
+                        }
+                    })
+                    .setNegativeButton("No", null).show();
+            return true;
+        }
     }
-    public NoteAdapter(Context context,
-                           LinkedList<String> wordList) {
+    public NoteAdapter(Context context, LinkedList<String> wordList) {
         mInflater = LayoutInflater.from(context);
+        _context = context;
         this.mWordList = wordList;
     }
 
