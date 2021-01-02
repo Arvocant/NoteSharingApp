@@ -20,4 +20,10 @@
     <string name="nieuwe_gebruiker_sign_up">Nieuwe gebruiker? SIGN UP</string>
     <string name="noteshare">NoteShare</string>
     <string name="slogan">Deel je notities met anderen!</string>
+    <string name="sign_up">Sign Up!</string>
+    <string name="maak_een_account_aan">Maak een account aan</string>
+    <string name="volledige_naam">Volledige Naam</string>
+    <string name="email">Email</string>
+    <string name="telefoon_nummer">Telefoon Nummer</string>
+    <string name="heb_je_al_een_account_log_in">Heb je al een account? Log in</string>
 </resources>
