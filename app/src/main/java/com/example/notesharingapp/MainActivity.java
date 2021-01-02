@@ -43,9 +43,8 @@ public class MainActivity extends AppCompatActivity {
         mSearchText = findViewById(R.id.zoeken);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         //ListView listView = (ListView) findViewById(R.id.listView);
-        mRecyclerView = findViewById(R.id.recyclerview);
+        mRecyclerView = (RecyclerView)findViewById(R.id.recyclerview);
 
 
 
