@@ -13,6 +13,7 @@
         android:id="@+id/logo_image"
         android:layout_width="150dp"
         android:layout_height="150dp"
+        android:transitionName="logo_image"
         app:srcCompat="@drawable/note_sharing_app_foreground"/>
     <TextView
         android:id="@+id/logo_name"
@@ -20,6 +21,7 @@
         android:layout_height="wrap_content"
         android:text="@string/welkomtext"
         android:textSize="40sp"
+        android:transitionName="logo_text"
         android:fontFamily="@font/arvo"
         android:textColor="#000"/>
     <TextView
@@ -46,6 +48,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="@string/username"
                 android:inputType="text"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -61,6 +64,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="@string/password"
                 android:inputType="textPassword"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -91,4 +95,5 @@
             android:layout_margin="5dp"/>
 
     </LinearLayout>
+
 </LinearLayout>

@@ -37,15 +37,15 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/username"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/username"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"/>
+                android:hint="@string/username"
+                android:inputType="text" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -54,13 +54,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:passwordToggleEnabled="true"
-            android:hint="@string/password"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword"/>
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                app:passwordToggleEnabled="true" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -70,7 +71,6 @@
             android:background="#000000000"
             android:text="@string/wachtwoord_vergeten"
             android:layout_gravity="end"
-            android:elevation="0dp"
             android:layout_margin="5dp"/>
         <Button
             android:layout_width="match_parent"
@@ -86,7 +86,6 @@
             android:background="#000000000"
             android:text="@string/nieuwe_gebruiker_sign_up"
             android:layout_gravity="end"
-            android:elevation="0dp"
             android:layout_margin="5dp"/>
 
     </LinearLayout>
