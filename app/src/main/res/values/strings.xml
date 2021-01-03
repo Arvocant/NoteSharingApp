@@ -9,7 +9,7 @@
 
     <string name="note_sharing_app_text">Note Sharing App</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-    <string name="zoeken">zoeken</string>
+    <string name="zoeken">Zoek een notitie</string>
     <string name="a_big_title">A Big Title</string>
     <string name="welkomtext">Welkom terug!</string>
     <string name="log_in_om_verder_te_gaan">Log in om verder te gaan!</string>

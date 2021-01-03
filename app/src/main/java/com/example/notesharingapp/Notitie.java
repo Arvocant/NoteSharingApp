@@ -2,6 +2,7 @@ package com.example.notesharingapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
@@ -10,18 +11,46 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 
+import java.util.Calendar;
 import java.util.HashSet;
 
 public class Notitie extends AppCompatActivity {
 
+
+    EditText etDate;
+    DatePickerDialog.OnDateSetListener setListener;
     int noteId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_notitie);
+
+        etDate = findViewById(R.id.et_date);
+
+        Calendar calendar = Calendar.getInstance();
+        final int year = calendar.get(Calendar.YEAR);
+        final int month = calendar.get(Calendar.MONTH);
+        final int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        etDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(Notitie.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int day) {
+                        month = month+1;
+                        String date = day+"/"+month+"/"+year;
+                        etDate.setText(date);
+                    }
+                }, year,month,day);
+                datePickerDialog.show();
+            }
+        });
+
         // Get the intent, verify the action and get the query
         Intent intent = getIntent();
         noteId = intent.getIntExtra("noteId", -1);
