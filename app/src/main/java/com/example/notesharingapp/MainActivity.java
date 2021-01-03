@@ -22,6 +22,8 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.gson.Gson;
+
 import java.util.HashSet;
 import java.util.LinkedList;
 
@@ -31,7 +33,8 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     static NoteAdapter mAdapter;
     private EditText mSearchText;
-    public static LinkedList<String> notes = new LinkedList<>();
+    public static LinkedList<String> Titles = new LinkedList<>();
+    public static LinkedList<String> Bodies = new LinkedList<>();
     //static ArrayAdapter arrayAdapter; //deleten
 
     @Override
@@ -59,16 +62,18 @@ public class MainActivity extends AppCompatActivity {
 
 
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.notesharingapp", Context.MODE_PRIVATE);
-        HashSet<String> set = (HashSet<String>) sharedPreferences.getStringSet("notes", null);
-        if (set == null){
-            notes.add("Example note");
+        HashSet<String> setTitle = (HashSet<String>)sharedPreferences.getStringSet("title", null);
+        HashSet<String> setBody = (HashSet<String>)sharedPreferences.getStringSet("body", null);
+        if (setTitle == null || setBody == null){
+            Titles.add("Title here");
+            Bodies.add("Notes here");
         } else{
-            notes = new LinkedList<>(set);
+            Titles = new LinkedList<>(setTitle);
+            Bodies = new LinkedList<>(setBody);
         }
 
-        notes.add("Example note");
         //arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, notes); deleten
-        mAdapter = new NoteAdapter(this, notes);
+        mAdapter = new NoteAdapter(this, Titles);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 

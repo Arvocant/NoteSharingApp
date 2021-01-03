@@ -33,16 +33,18 @@ public class Notitie extends AppCompatActivity {
         Intent intent1 = getIntent();
         noteId = intent.getIntExtra("noteId", -1);
         if (noteId != -1){
-            editText.setText(MainActivity.notes.get(noteId));
+            editText.setText(MainActivity.Titles.get(noteId));
         } else {
-            MainActivity.notes.add("");
-            noteId = MainActivity.notes.size() -1;
+            MainActivity.Titles.add("");
+            noteId = MainActivity.Titles.size() -1;
             MainActivity.mAdapter.notifyDataSetChanged();
 
             SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.notesharingapp", Context.MODE_PRIVATE);
 
-            HashSet<String> set = new HashSet<>(MainActivity.notes);
-            sharedPreferences.edit().putStringSet("notes", set).apply();
+            HashSet<String> set = new HashSet<>(MainActivity.Titles);
+            sharedPreferences.edit().putStringSet("title", set).apply();
+            HashSet<String> set2 = new HashSet<>(MainActivity.Bodies);
+            sharedPreferences.edit().putStringSet("body", set).apply();
         }
 
         editText.addTextChangedListener(new TextWatcher() {
@@ -53,7 +55,7 @@ public class Notitie extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                MainActivity.notes.set(noteId, String.valueOf(s));
+                MainActivity.Bodies.set(noteId, String.valueOf(s));
                 MainActivity.mAdapter.notifyDataSetChanged();
 
             }
