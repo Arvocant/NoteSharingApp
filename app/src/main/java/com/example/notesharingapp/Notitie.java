@@ -60,11 +60,11 @@ public class Notitie extends AppCompatActivity {
         }
         EditText editText = findViewById(R.id.title);
         EditText editText2 = findViewById(R.id.editTextTextMultiLine);
-
+        EditText editText3 = findViewById(R.id.et_date);
         if (noteId == -1){
-            MainActivity.Titles.add("New note");
-            MainActivity.Bodies.add("Notes");
-            MainActivity.Dates.add("");
+            MainActivity.Titles.add("Title here");
+            MainActivity.Bodies.add("Notes here");
+            MainActivity.Dates.add("1/1/2021");
             noteId = MainActivity.Titles.size() -1;
             SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.notesharingapp", Context.MODE_PRIVATE);
             HashSet<String> set = new HashSet<>(MainActivity.Titles);
@@ -77,7 +77,7 @@ public class Notitie extends AppCompatActivity {
        }
         editText.setText(MainActivity.Titles.get(noteId));
         editText2.setText(MainActivity.Bodies.get(noteId));
-        etDate.setText(MainActivity.Dates.get(noteId));
+        editText3.setText(MainActivity.Dates.get(noteId));
         editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -117,7 +117,7 @@ public class Notitie extends AppCompatActivity {
 
             }
         });
-        etDate.addTextChangedListener(new TextWatcher() {
+        editText3.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 

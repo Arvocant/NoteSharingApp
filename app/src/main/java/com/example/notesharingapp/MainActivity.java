@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         if (setTitle == null || setBody == null || setDate == null){
             Titles.add("Title here");
             Bodies.add("Notes here");
-            Dates.add("");
+            Dates.add("1/1/2021");
         } else{
             Titles = new LinkedList<>(setTitle);
             Bodies = new LinkedList<>(setBody);
