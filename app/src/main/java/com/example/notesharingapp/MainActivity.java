@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         HashSet<String> setTitle = (HashSet<String>)sharedPreferences.getStringSet("title", null);
         HashSet<String> setBody = (HashSet<String>)sharedPreferences.getStringSet("body", null);
         HashSet<String> setDate = (HashSet<String>)sharedPreferences.getStringSet("date", null);
-        if (setTitle == null || setBody == null){
+        if (setTitle == null || setBody == null || setDate == null){
             Titles.add("Title here");
             Bodies.add("Notes here");
             Dates.add("");
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
             if (Titles.size() == 0){
                 Titles.add("Title here");
                 Bodies.add("Notes here");
-                Dates.add("");
+                Dates.add("1/1/2021");
             }
         }
 
@@ -99,7 +99,6 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.add_note) {
             Intent intent = new Intent(getApplicationContext(), Notitie.class);
             startActivity(intent);
-
             return true;
         }
 

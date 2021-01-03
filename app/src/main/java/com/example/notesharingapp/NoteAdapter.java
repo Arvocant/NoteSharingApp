@@ -112,8 +112,6 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.WordViewHolder
     public NoteAdapter(Context context, LinkedList<String> wordList) {
         mInflater = LayoutInflater.from(context);
         _context = context;
-        /*Gson gson = new Gson();
-        String json = gson.fromJson();*/
         this.mWordList = wordList;
     }
 
