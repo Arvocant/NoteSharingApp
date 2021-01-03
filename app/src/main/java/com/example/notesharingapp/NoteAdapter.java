@@ -30,6 +30,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,7 +48,7 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 /**
  * Shows how to implement a simple Adapter for a RecyclerView.
@@ -55,7 +56,7 @@ import java.util.LinkedList;
  */
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.WordViewHolder>  {
 
-    private final LinkedList<String> mWordList;
+    private final ArrayList<String> mWordList;
     private LayoutInflater mInflater;
     private Context _context;
     class WordViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
@@ -93,23 +94,15 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.WordViewHolder
                             MainActivity.Bodies.remove(itemToDelete);
                             MainActivity.Titles.remove(itemToDelete);
                             MainActivity.Dates.remove(itemToDelete);
-                            mAdapter.notifyDataSetChanged();
-
-                            SharedPreferences sharedPreferences = _context.getApplicationContext().getSharedPreferences("com.example.notesharingapp", Context.MODE_PRIVATE);
-
-                            HashSet<String> set = new HashSet<>(MainActivity.Titles);
-                            HashSet<String> set2 = new HashSet<>(MainActivity.Bodies);
-                            HashSet<String> set3 = new HashSet<>(MainActivity.Dates);
-                            sharedPreferences.edit().putStringSet("title", set).apply();
-                            sharedPreferences.edit().putStringSet("body", set2).apply();
-                            sharedPreferences.edit().putStringSet("date", set3).apply();
+                            Saving.Save(_context);
+                            MainActivity.mAdapter.notifyDataSetChanged();
                         }
                     })
                     .setNegativeButton("No", null).show();
             return true;
         }
     }
-    public NoteAdapter(Context context, LinkedList<String> wordList) {
+    public NoteAdapter(Context context, ArrayList<String> wordList) {
         mInflater = LayoutInflater.from(context);
         _context = context;
         this.mWordList = wordList;

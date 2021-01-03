@@ -13,6 +13,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 
@@ -24,8 +25,9 @@ import android.widget.EditText;
 
 import com.google.gson.Gson;
 
+import java.util.Arrays;
 import java.util.HashSet;
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,9 +35,9 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     static NoteAdapter mAdapter;
     private EditText mSearchText;
-    public static LinkedList<String> Titles = new LinkedList<>();
-    public static LinkedList<String> Bodies = new LinkedList<>();
-    public static LinkedList<String> Dates = new LinkedList<>();
+    public static ArrayList<String> Titles = new ArrayList<>();
+    public static ArrayList<String> Bodies = new ArrayList<>();
+    public static ArrayList<String> Dates = new ArrayList<>();
     //static ArrayAdapter arrayAdapter; //deleten
 
     @Override
@@ -57,21 +59,40 @@ public class MainActivity extends AppCompatActivity {
         });
 
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.notesharingapp", Context.MODE_PRIVATE);
-        HashSet<String> setTitle = (HashSet<String>)sharedPreferences.getStringSet("title", null);
-        HashSet<String> setBody = (HashSet<String>)sharedPreferences.getStringSet("body", null);
-        HashSet<String> setDate = (HashSet<String>)sharedPreferences.getStringSet("date", null);
-        if (setTitle == null || setBody == null || setDate == null){
+        String stringTitles = sharedPreferences.getString("title", null);
+        String stringBodies = sharedPreferences.getString("body", null);
+        String stringDates = sharedPreferences.getString("date", null);
+        if (stringTitles == null || stringBodies == null || stringDates == null){
             Titles.add("Title here");
             Bodies.add("Notes here");
             Dates.add("1/1/2021");
+            Saving.Save(getApplicationContext());
+            stringTitles = sharedPreferences.getString("title", null);
+            stringBodies = sharedPreferences.getString("body", null);
+            stringDates = sharedPreferences.getString("date", null);
+        }
+
+        if (!stringTitles.isEmpty()){
+            Titles = new ArrayList<>(Arrays.asList(stringTitles.split(";")));
+        }
+        if (!stringBodies.isEmpty()){
+            Bodies = new ArrayList<>(Arrays.asList(stringBodies.split(";")));
+        }
+        if (!stringDates.isEmpty()){
+            Dates = new ArrayList<>(Arrays.asList(stringDates.split(";")));
+        }
+
+        if (Titles == null || Bodies == null || Dates == null){ //Als app voor het eerst wordt geopend moet deze een voorbeeld hebben
+            Titles.add("Title here");
+            Bodies.add("Notes here");
+            Dates.add("1/1/2021");
+            Saving.Save(getApplicationContext());
         } else{
-            Titles = new LinkedList<>(setTitle);
-            Bodies = new LinkedList<>(setBody);
-            Dates = new LinkedList<>(setDate);
-            if (Titles.size() == 0){
+            if (Titles.size() == 0){ //Als er geen notes (meer) zijn wordt een voorbeeld toegevoegd
                 Titles.add("Title here");
                 Bodies.add("Notes here");
                 Dates.add("1/1/2021");
+                Saving.Save(getApplicationContext());
             }
         }
 
