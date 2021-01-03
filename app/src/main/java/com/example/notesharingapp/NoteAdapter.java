@@ -43,6 +43,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -54,6 +56,7 @@ import java.util.LinkedList;
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.WordViewHolder>  {
 
     private final LinkedList<String> mWordList;
+    //private final LinkedList<String> mBody;
     private LayoutInflater mInflater;
     private Context _context;
     class WordViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
@@ -101,6 +104,8 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.WordViewHolder
     public NoteAdapter(Context context, LinkedList<String> wordList) {
         mInflater = LayoutInflater.from(context);
         _context = context;
+        /*Gson gson = new Gson();
+        String json = gson.fromJson();*/
         this.mWordList = wordList;
     }
 
