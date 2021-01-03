@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".signUp"
-    android:orientation="vertical"
     android:background="#fff"
-    android:padding="20dp">
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".signUp">
 
     <ImageView
         android:id="@+id/logo_image"
@@ -19,25 +19,25 @@
         android:id="@+id/logo_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/sign_up"
-        android:transitionName="logo_text"
-        android:textSize="40sp"
         android:fontFamily="@font/arvo"
-        android:textColor="#000"/>
+        android:text="@string/sign_up"
+        android:textColor="#000"
+        android:textSize="40sp"
+        android:transitionName="logo_text"/>
     <TextView
         android:id="@+id/slogan_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/maak_een_account_aan"
-        android:transitionName="logo_desc"
-        android:textSize="18sp"/>
+        android:textSize="18sp"
+        android:transitionName="logo_desc"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp">
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
 
         <!--<com.google.android.material.textfield.TextInputLayout
             android:id="@+id/name"
@@ -113,19 +113,22 @@
             android:id="@+id/login_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/go"
-            android:background="#000"
-            android:textColor="#fff"
+            android:layout_marginLeft="5dp"
             android:layout_marginTop="20dp"
+            android:layout_marginRight="5dp"
             android:layout_marginBottom="5dp"
+            android:background="#000"
+            android:text="@string/go"
+            android:textColor="#fff"
             android:transitionName="login_btn"/>
         <Button
+            android:id="@+id/login_screen"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#ff0000"
-            android:text="@string/heb_je_al_een_account_log_in"
             android:layout_gravity="end"
             android:layout_margin="5dp"
+            android:background="#ff0000"
+            android:text="@string/heb_je_al_een_account_log_in"
             android:transitionName="login_signup_tran"/>
 
     </LinearLayout>

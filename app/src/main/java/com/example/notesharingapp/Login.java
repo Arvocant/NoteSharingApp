@@ -6,6 +6,7 @@ import androidx.core.app.ActivityOptionsCompat;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import android.view.WindowManager;
@@ -61,7 +62,14 @@ public class Login extends AppCompatActivity {
             }
         });
 
-
+        login_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Login.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
     }
 }
