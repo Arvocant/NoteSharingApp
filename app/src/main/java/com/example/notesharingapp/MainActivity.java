@@ -1,11 +1,13 @@
 package com.example.notesharingapp;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,6 +18,8 @@ import android.view.View;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 
 import java.util.HashSet;
@@ -40,8 +44,14 @@ public class MainActivity extends AppCompatActivity {
         //ListView listView = (ListView) findViewById(R.id.listView);
         mRecyclerView = (RecyclerView)findViewById(R.id.recyclerview);
 
-
-
+        final Button button = findViewById(R.id.button_first);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, splashscreen.class);
+                startActivity(intent);
+            }
+        });
 
 
 
@@ -63,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 /*
-        mRecyclerView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        mRecyclerView.setOnItemLongClickListener(new RecyclerView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int i, long l) {
 

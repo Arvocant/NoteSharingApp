@@ -19,7 +19,7 @@ import android.widget.TextView;
 public class splashscreen extends AppCompatActivity {
 
     //Overgang splashcreen -> Login
-    private static int SPLASH_SCREEN = 5000;
+    private static final int SPLASH_SCREEN = 3000;
 
     //Variabelen
     Animation topAnim, bottomAnim;
@@ -49,14 +49,16 @@ public class splashscreen extends AppCompatActivity {
             @Override
             public void run() {
                 Intent intent = new Intent(splashscreen.this, Login.class);
-                Pair[] pairs = new Pair[2];
+                startActivity(intent);
+                finish();
+                /*Pair[] pairs = new Pair[2];
                 pairs[0] = new Pair<View,String>(image, "logo_image");
                 pairs[1] = new Pair<View,String>(naam, "logo_text");
 
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
                     ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(splashscreen.this, pairs);
                     startActivity(intent, options.toBundle());
-                }
+                }*/
             }
         }, SPLASH_SCREEN);
     }

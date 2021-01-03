@@ -9,9 +9,10 @@
         android:roundIcon="@mipmap/note_sharing_app_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".signUp"></activity>
+        <activity android:name=".signUp" />
         <activity android:name=".Dashboard" />
         <activity android:name=".splashscreen" />
+        <activity android:name=".Login" />
         <activity android:name=".Notitie" />
         <activity
             android:name=".MainActivity"

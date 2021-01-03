@@ -41,7 +41,8 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Login.this, signUp.class);
-                Pair[] pairs = new Pair[7];
+                startActivity(intent);
+                /*Pair[] pairs = new Pair[7];
 
                 pairs[0] = new Pair<View, String>(image, "logo_image");
                 pairs[1] = new Pair<View, String>(logoText, "logo_text");
@@ -54,7 +55,7 @@ public class Login extends AppCompatActivity {
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
                     ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(Login.this, pairs);
                     startActivity(intent, options.toBundle());
-                }
+                }*/
 
 
             }

@@ -11,8 +11,8 @@
 
     <ImageView
         android:id="@+id/logo_image"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:transitionName="logo_image"
         app:srcCompat="@drawable/notesharingapp_red" />
     <TextView
@@ -39,25 +39,25 @@
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp">
 
-        <com.google.android.material.textfield.TextInputLayout
+        <!--<com.google.android.material.textfield.TextInputLayout
             android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">-->
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/volledige_naam"
                 android:inputType="text"/>
-        </com.google.android.material.textfield.TextInputLayout>
+        <!--</com.google.android.material.textfield.TextInputLayout>-->
 
-        <com.google.android.material.textfield.TextInputLayout
+        <!--<com.google.android.material.textfield.TextInputLayout
             android:id="@+id/username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:counterMaxLength="15"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">-->
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -65,41 +65,41 @@
                 android:hint="@string/username"
                 android:inputType="text"
                 android:transitionName="username_tran"/>
-        </com.google.android.material.textfield.TextInputLayout>
+        <!--</com.google.android.material.textfield.TextInputLayout>-->
 
-        <com.google.android.material.textfield.TextInputLayout
+        <!--<com.google.android.material.textfield.TextInputLayout
             android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">-->
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/email"
                 android:inputType="textEmailAddress"/>
-        </com.google.android.material.textfield.TextInputLayout>
+        <!--</com.google.android.material.textfield.TextInputLayout>-->
 
-        <com.google.android.material.textfield.TextInputLayout
+        <!--<com.google.android.material.textfield.TextInputLayout
             android:id="@+id/phoneNo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">-->
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/telefoon_nummer"
                 android:inputType="number"/>
-        </com.google.android.material.textfield.TextInputLayout>
+        <!--</com.google.android.material.textfield.TextInputLayout>-->
 
-        <com.google.android.material.textfield.TextInputLayout
+        <!--<com.google.android.material.textfield.TextInputLayout
             android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:passwordToggleEnabled="true"
             android:hint="@string/password"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">-->
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -107,7 +107,7 @@
                 android:hint="@string/password"
                 android:inputType="textPassword"
                 android:transitionName="password_tran"/>
-        </com.google.android.material.textfield.TextInputLayout>
+        <!--</com.google.android.material.textfield.TextInputLayout>-->
 
         <Button
             android:id="@+id/login_btn"
