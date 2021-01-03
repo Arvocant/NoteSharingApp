@@ -64,16 +64,20 @@ public class Notitie extends AppCompatActivity {
         if (noteId == -1){
             MainActivity.Titles.add("New note");
             MainActivity.Bodies.add("Notes");
+            MainActivity.Dates.add("");
             noteId = MainActivity.Titles.size() -1;
             SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.notesharingapp", Context.MODE_PRIVATE);
             HashSet<String> set = new HashSet<>(MainActivity.Titles);
             HashSet<String> set2 = new HashSet<>(MainActivity.Bodies);
+            HashSet<String> set3 = new HashSet<>(MainActivity.Dates);
             sharedPreferences.edit().putStringSet("title", set).apply();
             sharedPreferences.edit().putStringSet("body", set2).apply();
+            sharedPreferences.edit().putStringSet("date", set3).apply();
             MainActivity.mAdapter.notifyDataSetChanged();
        }
         editText.setText(MainActivity.Titles.get(noteId));
         editText2.setText(MainActivity.Bodies.get(noteId));
+        etDate.setText(MainActivity.Dates.get(noteId));
         editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -113,7 +117,25 @@ public class Notitie extends AppCompatActivity {
 
             }
         });
+        etDate.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.notesharingapp", Context.MODE_PRIVATE);
+                MainActivity.Dates.set(noteId, String.valueOf(s));
+                HashSet<String> set3 = new HashSet<>(MainActivity.Dates);
+                sharedPreferences.edit().putStringSet("date", set3).apply();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
     private void doMySearch(String query) {

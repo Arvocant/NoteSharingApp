@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText mSearchText;
     public static LinkedList<String> Titles = new LinkedList<>();
     public static LinkedList<String> Bodies = new LinkedList<>();
+    public static LinkedList<String> Dates = new LinkedList<>();
     //static ArrayAdapter arrayAdapter; //deleten
 
     @Override
@@ -58,15 +59,19 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.notesharingapp", Context.MODE_PRIVATE);
         HashSet<String> setTitle = (HashSet<String>)sharedPreferences.getStringSet("title", null);
         HashSet<String> setBody = (HashSet<String>)sharedPreferences.getStringSet("body", null);
+        HashSet<String> setDate = (HashSet<String>)sharedPreferences.getStringSet("date", null);
         if (setTitle == null || setBody == null){
             Titles.add("Title here");
             Bodies.add("Notes here");
+            Dates.add("");
         } else{
             Titles = new LinkedList<>(setTitle);
             Bodies = new LinkedList<>(setBody);
+            Dates = new LinkedList<>(setDate);
             if (Titles.size() == 0){
                 Titles.add("Title here");
                 Bodies.add("Notes here");
+                Dates.add("");
             }
         }
 

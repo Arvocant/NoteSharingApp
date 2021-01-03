@@ -92,14 +92,17 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.WordViewHolder
                         public void onClick(DialogInterface dialog, int which) {
                             MainActivity.Bodies.remove(itemToDelete);
                             MainActivity.Titles.remove(itemToDelete);
+                            MainActivity.Dates.remove(itemToDelete);
                             mAdapter.notifyDataSetChanged();
 
                             SharedPreferences sharedPreferences = _context.getApplicationContext().getSharedPreferences("com.example.notesharingapp", Context.MODE_PRIVATE);
 
                             HashSet<String> set = new HashSet<>(MainActivity.Titles);
-                            sharedPreferences.edit().putStringSet("title", set).apply();
                             HashSet<String> set2 = new HashSet<>(MainActivity.Bodies);
-                            sharedPreferences.edit().putStringSet("body", set).apply();
+                            HashSet<String> set3 = new HashSet<>(MainActivity.Dates);
+                            sharedPreferences.edit().putStringSet("title", set).apply();
+                            sharedPreferences.edit().putStringSet("body", set2).apply();
+                            sharedPreferences.edit().putStringSet("date", set3).apply();
                         }
                     })
                     .setNegativeButton("No", null).show();
