@@ -23,7 +23,6 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.google.gson.Gson;
 
 import java.util.Arrays;
 import java.util.HashSet;
