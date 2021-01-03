@@ -29,13 +29,16 @@ public class Notitie extends AppCompatActivity {
             doMySearch(query);
         }
         EditText editText = findViewById(R.id.title);
+        EditText editText2 = findViewById(R.id.editTextTextMultiLine);
 
         Intent intent1 = getIntent();
         noteId = intent.getIntExtra("noteId", -1);
         if (noteId != -1){
             editText.setText(MainActivity.Titles.get(noteId));
+            editText2.setText(MainActivity.Bodies.get(noteId));
         } else {
             MainActivity.Titles.add("");
+            MainActivity.Bodies.add("");
             noteId = MainActivity.Titles.size() -1;
             MainActivity.mAdapter.notifyDataSetChanged();
 
@@ -44,10 +47,28 @@ public class Notitie extends AppCompatActivity {
             HashSet<String> set = new HashSet<>(MainActivity.Titles);
             sharedPreferences.edit().putStringSet("title", set).apply();
             HashSet<String> set2 = new HashSet<>(MainActivity.Bodies);
-            sharedPreferences.edit().putStringSet("body", set).apply();
+            sharedPreferences.edit().putStringSet("body", set2).apply();
         }
 
         editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                MainActivity.Titles.set(noteId, String.valueOf(s));
+                MainActivity.mAdapter.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        editText2.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 

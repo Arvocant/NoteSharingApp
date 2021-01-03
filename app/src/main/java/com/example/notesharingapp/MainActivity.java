@@ -57,10 +57,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-
-
-
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.notesharingapp", Context.MODE_PRIVATE);
         HashSet<String> setTitle = (HashSet<String>)sharedPreferences.getStringSet("title", null);
         HashSet<String> setBody = (HashSet<String>)sharedPreferences.getStringSet("body", null);
