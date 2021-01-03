@@ -28,7 +28,7 @@ public class Notitie extends AppCompatActivity {
             String query = intent.getStringExtra(SearchManager.QUERY);
             doMySearch(query);
         }
-        EditText editText = (EditText) findViewById(R.id.editTextTextMultiLine);
+        EditText editText = findViewById(R.id.title);
 
         Intent intent1 = getIntent();
         noteId = intent.getIntExtra("noteId", -1);
