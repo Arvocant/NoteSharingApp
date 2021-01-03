@@ -122,7 +122,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#000000000"
+            android:background="#ff0000"
             android:text="@string/heb_je_al_een_account_log_in"
             android:layout_gravity="end"
             android:layout_margin="5dp"

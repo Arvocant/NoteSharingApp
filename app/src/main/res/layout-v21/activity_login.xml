@@ -75,7 +75,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_margin="5dp"
-            android:background="#000000000"
+            android:background="#ff0000"
             android:elevation="0dp"
             android:text="@string/wachtwoord_vergeten"/>
         <Button
@@ -94,7 +94,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_margin="5dp"
-            android:background="#000000000"
+            android:background="#ff0000"
             android:elevation="0dp"
             android:text="@string/nieuwe_gebruiker_sign_up"
             android:transitionName="login_signup_tran"/>
