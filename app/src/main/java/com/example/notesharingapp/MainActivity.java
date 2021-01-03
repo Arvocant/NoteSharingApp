@@ -44,8 +44,7 @@ public class MainActivity extends AppCompatActivity {
         mSearchText = findViewById(R.id.zoeken);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        //ListView listView = (ListView) findViewById(R.id.listView);
-        mRecyclerView = (RecyclerView)findViewById(R.id.recyclerview);
+        mRecyclerView = findViewById(R.id.recyclerview);
 
         final Button button = findViewById(R.id.button_first);
         button.setOnClickListener(new View.OnClickListener() {
@@ -56,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.notesharingapp", Context.MODE_PRIVATE);
         HashSet<String> setTitle = (HashSet<String>)sharedPreferences.getStringSet("title", null);
         HashSet<String> setBody = (HashSet<String>)sharedPreferences.getStringSet("body", null);
@@ -66,39 +64,16 @@ public class MainActivity extends AppCompatActivity {
         } else{
             Titles = new LinkedList<>(setTitle);
             Bodies = new LinkedList<>(setBody);
+            if (Titles.size() == 0){
+                Titles.add("Title here");
+                Bodies.add("Notes here");
+            }
         }
 
-        //arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, notes); deleten
         mAdapter = new NoteAdapter(this, Titles);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-/*
-        mRecyclerView.setOnItemLongClickListener(new RecyclerView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int i, long l) {
-
-                final int itemToDelete = i;
-
-                new AlertDialog.Builder(MainActivity.this).setIcon(android.R.drawable.ic_dialog_alert)
-                        .setTitle("Dit item wordt verwijderd")
-                        .setMessage("Ben je zeker dat je deze notitie wilt verwijderen?")
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                notes.remove(itemToDelete);
-                                mAdapter.notifyDataSetChanged();
-
-                                SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.notesharingapp", Context.MODE_PRIVATE);
-
-                                HashSet<String> set = new HashSet<>(MainActivity.notes);
-                                sharedPreferences.edit().putStringSet("notes", set).apply();
-                            }
-                        })
-                        .setNegativeButton("No", null).show();
-                return true;
-            }
-        });*/
     }
 
     @Override
@@ -118,7 +93,6 @@ public class MainActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.add_note) {
             Intent intent = new Intent(getApplicationContext(), Notitie.class);
-
             startActivity(intent);
 
             return true;
