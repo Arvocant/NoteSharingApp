@@ -66,6 +66,9 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.WordViewHolder
             wordItemView = itemView.findViewById(R.id.word);
             this.mAdapter = adapter;
             itemView.setOnClickListener(this);
+            itemView.setOnLongClickListener(this);
+            itemView.setLongClickable(true);
+            itemView.setClickable(true);
         }
 
         @Override

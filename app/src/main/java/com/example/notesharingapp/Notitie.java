@@ -32,7 +32,7 @@ public class Notitie extends AppCompatActivity {
         EditText editText2 = findViewById(R.id.editTextTextMultiLine);
 
         Intent intent1 = getIntent();
-        noteId = intent.getIntExtra("noteId", -1);
+        noteId = intent1.getIntExtra("noteId", -1);
         if (noteId != -1){
             editText.setText(MainActivity.Titles.get(noteId));
             editText2.setText(MainActivity.Bodies.get(noteId));
