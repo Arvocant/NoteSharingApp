@@ -24,27 +24,27 @@ public class Notitie extends AppCompatActivity {
         setContentView(R.layout.fragment_notitie);
         // Get the intent, verify the action and get the query
         Intent intent = getIntent();
+        noteId = intent.getIntExtra("noteId", -1);
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
             doMySearch(query);
         }
         EditText editText = findViewById(R.id.title);
+        EditText editText2 = findViewById(R.id.editTextTextMultiLine);
 
-        Intent intent1 = getIntent();
-        noteId = intent.getIntExtra("noteId", -1);
-        if (noteId != -1){
-            editText.setText(MainActivity.notes.get(noteId));
-        } else {
-            MainActivity.notes.add("");
-            noteId = MainActivity.notes.size() -1;
-            MainActivity.mAdapter.notifyDataSetChanged();
-
+        if (noteId == -1){
+            MainActivity.Titles.add("New note");
+            MainActivity.Bodies.add("Notes");
+            noteId = MainActivity.Titles.size() -1;
             SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.notesharingapp", Context.MODE_PRIVATE);
-
-            HashSet<String> set = new HashSet<>(MainActivity.notes);
-            sharedPreferences.edit().putStringSet("notes", set).apply();
-        }
-
+            HashSet<String> set = new HashSet<>(MainActivity.Titles);
+            HashSet<String> set2 = new HashSet<>(MainActivity.Bodies);
+            sharedPreferences.edit().putStringSet("title", set).apply();
+            sharedPreferences.edit().putStringSet("body", set2).apply();
+            MainActivity.mAdapter.notifyDataSetChanged();
+       }
+        editText.setText(MainActivity.Titles.get(noteId));
+        editText2.setText(MainActivity.Bodies.get(noteId));
         editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -53,9 +53,30 @@ public class Notitie extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                MainActivity.notes.set(noteId, String.valueOf(s));
+                SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.notesharingapp", Context.MODE_PRIVATE);
+                MainActivity.Titles.set(noteId, String.valueOf(s));
+                HashSet<String> set = new HashSet<>(MainActivity.Titles);
+                sharedPreferences.edit().putStringSet("title", set).apply();
                 MainActivity.mAdapter.notifyDataSetChanged();
+            }
 
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        editText2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.notesharingapp", Context.MODE_PRIVATE);
+                MainActivity.Bodies.set(noteId, String.valueOf(s));
+                HashSet<String> set2 = new HashSet<>(MainActivity.Bodies);
+                sharedPreferences.edit().putStringSet("body", set2).apply();
             }
 
             @Override

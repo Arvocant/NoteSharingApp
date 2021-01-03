@@ -56,7 +56,6 @@ import java.util.LinkedList;
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.WordViewHolder>  {
 
     private final LinkedList<String> mWordList;
-    //private final LinkedList<String> mBody;
     private LayoutInflater mInflater;
     private Context _context;
     class WordViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
@@ -67,6 +66,9 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.WordViewHolder
             wordItemView = itemView.findViewById(R.id.word);
             this.mAdapter = adapter;
             itemView.setOnClickListener(this);
+            itemView.setOnLongClickListener(this);
+            itemView.setLongClickable(true);
+            itemView.setClickable(true);
         }
 
         @Override
@@ -88,13 +90,16 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.WordViewHolder
                     .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            MainActivity.notes.remove(itemToDelete);
+                            MainActivity.Bodies.remove(itemToDelete);
+                            MainActivity.Titles.remove(itemToDelete);
                             mAdapter.notifyDataSetChanged();
 
                             SharedPreferences sharedPreferences = _context.getApplicationContext().getSharedPreferences("com.example.notesharingapp", Context.MODE_PRIVATE);
 
-                            HashSet<String> set = new HashSet<>(MainActivity.notes);
-                            sharedPreferences.edit().putStringSet("notes", set).apply();
+                            HashSet<String> set = new HashSet<>(MainActivity.Titles);
+                            sharedPreferences.edit().putStringSet("title", set).apply();
+                            HashSet<String> set2 = new HashSet<>(MainActivity.Bodies);
+                            sharedPreferences.edit().putStringSet("body", set).apply();
                         }
                     })
                     .setNegativeButton("No", null).show();

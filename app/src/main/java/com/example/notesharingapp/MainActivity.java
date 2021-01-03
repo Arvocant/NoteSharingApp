@@ -22,6 +22,8 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.gson.Gson;
+
 import java.util.HashSet;
 import java.util.LinkedList;
 
@@ -31,7 +33,8 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     static NoteAdapter mAdapter;
     private EditText mSearchText;
-    public static LinkedList<String> notes = new LinkedList<>();
+    public static LinkedList<String> Titles = new LinkedList<>();
+    public static LinkedList<String> Bodies = new LinkedList<>();
     //static ArrayAdapter arrayAdapter; //deleten
 
     @Override
@@ -41,8 +44,7 @@ public class MainActivity extends AppCompatActivity {
         mSearchText = findViewById(R.id.zoeken);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        //ListView listView = (ListView) findViewById(R.id.listView);
-        mRecyclerView = (RecyclerView)findViewById(R.id.recyclerview);
+        mRecyclerView = findViewById(R.id.recyclerview);
 
         final Button button = findViewById(R.id.button_first);
         button.setOnClickListener(new View.OnClickListener() {
@@ -53,51 +55,25 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-
-
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.notesharingapp", Context.MODE_PRIVATE);
-        HashSet<String> set = (HashSet<String>) sharedPreferences.getStringSet("notes", null);
-        if (set == null){
-            notes.add("Example note");
+        HashSet<String> setTitle = (HashSet<String>)sharedPreferences.getStringSet("title", null);
+        HashSet<String> setBody = (HashSet<String>)sharedPreferences.getStringSet("body", null);
+        if (setTitle == null || setBody == null){
+            Titles.add("Title here");
+            Bodies.add("Notes here");
         } else{
-            notes = new LinkedList<>(set);
+            Titles = new LinkedList<>(setTitle);
+            Bodies = new LinkedList<>(setBody);
+            if (Titles.size() == 0){
+                Titles.add("Title here");
+                Bodies.add("Notes here");
+            }
         }
 
-        notes.add("Example note");
-        //arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, notes); deleten
-        mAdapter = new NoteAdapter(this, notes);
+        mAdapter = new NoteAdapter(this, Titles);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-/*
-        mRecyclerView.setOnItemLongClickListener(new RecyclerView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int i, long l) {
-
-                final int itemToDelete = i;
-
-                new AlertDialog.Builder(MainActivity.this).setIcon(android.R.drawable.ic_dialog_alert)
-                        .setTitle("Dit item wordt verwijderd")
-                        .setMessage("Ben je zeker dat je deze notitie wilt verwijderen?")
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                notes.remove(itemToDelete);
-                                mAdapter.notifyDataSetChanged();
-
-                                SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.notesharingapp", Context.MODE_PRIVATE);
-
-                                HashSet<String> set = new HashSet<>(MainActivity.notes);
-                                sharedPreferences.edit().putStringSet("notes", set).apply();
-                            }
-                        })
-                        .setNegativeButton("No", null).show();
-                return true;
-            }
-        });*/
     }
 
     @Override
@@ -117,7 +93,6 @@ public class MainActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.add_note) {
             Intent intent = new Intent(getApplicationContext(), Notitie.class);
-
             startActivity(intent);
 
             return true;
