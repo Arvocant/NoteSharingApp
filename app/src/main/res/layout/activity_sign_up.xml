@@ -13,7 +13,7 @@
         android:id="@+id/logo_image"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        app:srcCompat="@drawable/note_sharing_app_foreground"/>
+        app:srcCompat="@drawable/notesharingapp_red"/>
     <TextView
         android:id="@+id/logo_name"
         android:layout_width="wrap_content"
