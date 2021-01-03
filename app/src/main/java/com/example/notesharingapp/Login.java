@@ -43,6 +43,7 @@ public class Login extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(Login.this, signUp.class);
                 startActivity(intent);
+                finish();
                 /*Pair[] pairs = new Pair[7];
 
                 pairs[0] = new Pair<View, String>(image, "logo_image");
